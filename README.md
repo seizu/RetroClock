@@ -22,7 +22,7 @@ On first boot, RetroClock will:
 
 1. Connect to the RetroClock WiFi network
 2. Open a web browser and navigate to `http://10.100.10.1`
-3. Adjust the network setting
+3. Adjust the network settings
 4. Save & reboot
 
 ## Features
@@ -32,7 +32,7 @@ On first boot, RetroClock will:
   1. **Main** — time (HH:MM) in a large pixel font, seconds as a dot grid, and a 5-hour weather forecast (two pages: +0..+4 ↔ +5..+9)
   2. **Big clock** — oversized clock plus the current temperature
   3. **Crypto / assets** — up to 6 configurable symbols with live price and percentage change over a selectable timeframe; tap the status row to cycle 9 timeframes (1H · 4H · 12H · 1D · 1W · 1M · 3M · 6M · 1Y)
-  4. **Egg timer** — MM:SS countdown with M / S / START / STOP buttons (tap-to-+1, hold for accelerating auto-repeat) and a WebPrefs-selectable alarm tone at 00:00 (1–5). A small non-blocking engine plays note/duration arrays straight through the LEDC peripheral (no `tone()` task → no heap churn); tones are converted from RTTTL ringtone strings.
+  4. **Egg timer** — MM:SS countdown with MIN / SEC / START / STOP buttons (tap-to-+1, hold for accelerating auto-repeat) and a WebPrefs-selectable alarm tone at 00:00 (1–5). A small non-blocking engine plays note/duration arrays straight through the LEDC peripheral (no `tone()` task → no heap churn); tones are converted from RTTTL ringtone strings.
 - **Live data**
   - Weather from [open-meteo.com](https://open-meteo.com) (via the `ApiClient` helper)
   - Prices & history from the Binance Futures API (`fapi.binance.com`): `indexPriceKlines` for 1h/1d/1w history buckets (100 bars each) and `ticker/price` per symbol for live quotes
