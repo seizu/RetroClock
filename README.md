@@ -184,3 +184,9 @@ Every option on the settings page, with a short note on what it does and how to 
 | Browse File | Pick a firmware or filesystem `.bin` file from your phone/computer for the update below. |
 | Update Firmware | Flashes the selected `.bin` as new firmware over WiFi (OTA) — no cable needed. The device reboots when done. |
 | Update LittleFS | Flashes the selected `.bin` as the filesystem image (fonts/graphics), also over WiFi. Only needed when those assets change. |
+
+---
+
+## APIs & commercial use
+
+The code is **MIT-licensed** and free to use. It does, however, rely on third-party APIs (**Binance**, **Open-Meteo**) whose free access is intended for private, non-commercial use. If you intend to use this project commercially, you are responsible for obtaining the appropriate commercial API access/agreements from those providers.
