@@ -1,7 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-#define APP_VERSION "1.9.1"
+#define APP_VERSION "1.9.2"
 #define APP_NAME "RETRO CLOCK"
 
 #define TIMENOW millis()

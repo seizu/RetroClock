@@ -95,9 +95,16 @@ void setup() {
     eggTimerInit();
 
     // === Screen 1: main (clock + seconds + weather) ===
+    // The seconds style is a setting (dc.hourglass), not a touch target: only the
+    // configured widget goes into the slot, and w == 0 switches its hit-test off.
+    // Its old rect (34,5,5,16) claimed four rows more than it ever draws and
+    // overlapped the weather slot, which sits first in this array and therefore
+    // swallowed every tap in the lower right corner.
+    Widget* secondsWidget = dc.hourglass ? static_cast<Widget*>(&widget_seconds)
+                                         : static_cast<Widget*>(&widget_seconds02);
     static Slot mainSlots[] = {
         { {1,  1,  33, 3},  {&widget_clock},   1, 0 },
-        { {34, 5,  5,  16}, {&widget_seconds, &widget_seconds02}, 2, (uint8_t)(dc.hourglass ? 0 : 1) },
+        { {34, 5,  0,  0},  {secondsWidget},   1, 0 },
         { {0,  18, 40, 9},  {&widget_weather, &widget_weather2}, 2, 0 },
     };
     static Screen mainScreen = {
@@ -124,9 +131,12 @@ void setup() {
     // widget_crypto_status. The display widget sets s_screenJustEntered on
     // activate, the status widget reads+clears it to distinguish a screen entry
     // from a real touch. Reversing the order breaks the timeframe-cycle logic.
+    // Rects are hit-test only (drawing uses just x/y): 39 wide from x=1 keeps them
+    // inside the 40-cell grid, and 17 rows stop the display slot one row short of
+    // the status slot instead of swallowing its top row.
     static Slot cryptoSlots[] = {
-        { {1,  1, 40, 18}, {&widget_crypto},        1, 0 },  // 6 asset rows
-        { {1, 18, 40, 12}, {&widget_crypto_status}, 1, 0 },  // status + timeframe touch
+        { {1,  1, 39, 17}, {&widget_crypto},        1, 0 },  // 6 asset rows
+        { {1, 18, 39, 12}, {&widget_crypto_status}, 1, 0 },  // status + timeframe touch
     };
     static Screen cryptoScreen = {
         "crypto", cryptoSlots, 2,
